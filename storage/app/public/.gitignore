@@ -1,2 +1,6 @@
 *
+!admin/
+!admin/images/
+!member/
+!member/images/
 !.gitignore
