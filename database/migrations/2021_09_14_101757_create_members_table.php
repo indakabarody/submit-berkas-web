@@ -15,6 +15,7 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('province_id')->index('fk_members_provinces1_idx');
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('name');
@@ -24,6 +25,10 @@ class CreateMembersTable extends Migration
             $table->rememberToken();
             $table->string('phone', 20)->nullable();
             $table->string('institution')->nullable();
+            $table->text('address')->nullable();
+            $table->tinyInteger('is_book_publisher')->nullable();
+            $table->tinyInteger('is_training_organizer')->nullable();
+            $table->tinyInteger('is_active_participant')->nullable();
             $table->tinyInteger('is_activated')->nullable();
             $table->timestamps();
         });
