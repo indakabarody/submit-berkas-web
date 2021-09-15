@@ -25,7 +25,7 @@
                             <div class="col-6">
                                 <div class="text-end">
                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $totalMember }}</span></h3>
-                                    <p class="text-muted mb-1 text-truncate">Member</p>
+                                    <p class="text-muted mb-1 text-truncate"><a href="{{ route('admin.members.index') }}">Member</a></p>
                                 </div>
                             </div>
                         </div> {{-- end row--}}
@@ -45,7 +45,7 @@
                             <div class="col-6">
                                 <div class="text-end">
                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $totalScript }}</span></h3>
-                                    <p class="text-muted mb-1 text-truncate">Naskah</p>
+                                    <p class="text-muted mb-1 text-truncate"><a href="{{ route('admin.scripts.index') }}">Naskah</a></p>
                                 </div>
                             </div>
                         </div> {{-- end row--}}

@@ -126,13 +126,13 @@
 								<div class="collapse" id="sidebarScripts">
 									<ul class="nav-second-level">
 										<li>
-											<a href="#">Semua Naskah</a>
+											<a href="{{ route('admin.scripts.index') }}">Semua Naskah</a>
 										</li>
 										<li>
-											<a href="#">Naskah Proses Review</a>
+											<a href="{{ route('admin.scripts.processed') }}">Naskah Proses Review</a>
 										</li>
 										<li>
-											<a href="#">Naskah Selesai</a>
+											<a href="{{ route('admin.scripts.done') }}">Naskah Selesai</a>
 										</li>
 									</ul>
 								</div>
@@ -149,19 +149,19 @@
 											<a href="{{ route('admin.admins.index') }}">Admin</a>
 										</li>
 										<li>
-											<a href="#">Member</a>
+											<a href="{{ route('admin.members.index') }}">Member</a>
 										</li>
 									</ul>
 								</div>
 							</li>
                             <li>
-								<a href="{{ route('admin.dashboard') }}">
-								<i data-feather="dollar-sign"></i>
-								<span> Data Invoice </span>
+								<a href="{{ route('admin.announcements.index') }}">
+								<i data-feather="info"></i>
+								<span> Data Pengumuman </span>
 								</a>
 							</li>
                             <li>
-								<a href="{{ route('admin.dashboard') }}">
+								<a href="{{ route('admin.guides.index') }}">
 								<i data-feather="align-justify"></i>
 								<span> Data Panduan </span>
 								</a>
