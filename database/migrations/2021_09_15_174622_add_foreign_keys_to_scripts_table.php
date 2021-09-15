@@ -14,7 +14,7 @@ class AddForeignKeysToScriptsTable extends Migration
     public function up()
     {
         Schema::table('scripts', function (Blueprint $table) {
-            $table->foreign('member_id', 'fk_scripts_members')->references('id')->on('members')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('member_id', 'fk_scripts_members')->references('id')->on('members')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

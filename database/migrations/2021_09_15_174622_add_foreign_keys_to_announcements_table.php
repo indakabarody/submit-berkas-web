@@ -14,7 +14,7 @@ class AddForeignKeysToAnnouncementsTable extends Migration
     public function up()
     {
         Schema::table('announcements', function (Blueprint $table) {
-            $table->foreign('member_id', 'fk_announcements_members1')->references('id')->on('members')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('member_id', 'fk_announcements_members1')->references('id')->on('members')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
