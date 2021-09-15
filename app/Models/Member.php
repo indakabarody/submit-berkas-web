@@ -59,4 +59,9 @@ class Member extends Authenticatable
     {
         $this->notify(new CustomResetPassword($token, 'member'));
     }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_id');
+    }
 }

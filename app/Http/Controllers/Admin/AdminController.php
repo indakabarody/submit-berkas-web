@@ -149,7 +149,7 @@ class AdminController extends Controller
         return redirect()->route('admin.admins.index')->with('toast_success', 'Berhasil menyimpan admin');
     }
 
-        /**
+    /**
      * Show the form for editing the password.
      *
      * @param  int  $id
