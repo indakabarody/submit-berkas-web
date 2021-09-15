@@ -4,20 +4,20 @@
         <meta charset="utf-8" />
         <title>@yield('title') - {{ config('app.name') }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
+        {{-- <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" /> --}}
+        {{-- <meta content="Coderthemes" name="author" /> --}}
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('themes/user/images/favicon.ico')}}">
+        {{-- App favicon --}}
+        {{-- <link rel="shortcut icon" href="{{asset('themes/user/images/favicon.ico')}}"> --}}
 
-		<!-- App css -->
+		{{-- App css --}}
 		<link href="{{asset('themes/user/css/config/default/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
 		<link href="{{asset('themes/user/css/config/default/app.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
 		<link href="{{asset('themes/user/css/config/default/bootstrap-dark.min.css')}}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
 		<link href="{{asset('themes/user/css/config/default/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
 
-		<!-- icons -->
+		{{-- icons --}}
 		<link href="{{asset('themes/user/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 
     </head>
@@ -39,27 +39,27 @@
                                     <a href="{{ route('home') }}" class="btn btn-success waves-effect waves-light">Back to Home</a>
                                 </div>
 
-                            </div> <!-- end card-body -->
+                            </div> {{-- end card-body --}}
                         </div>
-                        <!-- end card -->
+                        {{-- end card --}}
 
-                    </div> <!-- end col -->
+                    </div> {{-- end col --}}
                 </div>
-                <!-- end row -->
+                {{-- end row --}}
             </div>
-            <!-- end container -->
+            {{-- end container --}}
         </div>
-        <!-- end page -->
+        {{-- end page --}}
 
 
         <footer class="footer footer-alt">
             &copy; {{ date('Y') }} <a href="https://thejournalish.com" class="text-white-50">The Journalish</a>
         </footer>
 
-        <!-- Vendor js -->
+        {{-- Vendor js --}}
         <script src="{{asset('themes/user/js/vendor.min.js')}}"></script>
 
-        <!-- App js -->
+        {{-- App js --}}
         <script src="{{asset('themes/user/js/app.min.js')}}"></script>
 
     </body>

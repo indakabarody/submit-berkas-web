@@ -50,15 +50,17 @@
                                     </div> {{-- end row --}}
 
                                     <div class="mb-3">
-                                        <label for="example-fileinput" class="form-label">Ubah Foto</label>
+                                        <label for="example-fileinput" class="form-label">Ubah Foto (Opsional)</label>
                                         <input name="image" type="file" id="example-fileinput" class="form-control @error('image') is-invalid @enderror">
                                         @error('image') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
 
-                                    <div class="form-check form-switch">
-                                        <input name="is_activated" type="checkbox" class="form-check-input" id="customSwitch1" value="1" @if ($admin->is_activated == 1) checked @endif>
-                                        <label class="form-check-label" for="customSwitch1">Aktivasi Akun</label>
-                                    </div>
+                                    @if ($admin->id != Auth::user()->id)
+                                        <div class="form-check form-switch">
+                                            <input name="is_activated" type="checkbox" class="form-check-input" id="customSwitch1" value="1" @if ($admin->is_activated == 1) checked @endif>
+                                            <label class="form-check-label" for="customSwitch1">Aktivasi Akun</label>
+                                        </div>
+                                    @endif
 
                                     <div class="text-end">
                                         <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Simpan</button>

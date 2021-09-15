@@ -33,7 +33,7 @@ Data Member
 									<td>{{ $loop->iteration }}</td>
 									<td class="table-user">
 										<img src="@isset($member->image) {{ asset('storage/member/images/'.$member->id.'/'.$member->image) }} @else {{ asset('themes/user/images/users/blank.png') }} @endisset" alt="table-user" class="me-2 rounded-circle">
-										<a href="javascript:void(0);" class="text-body fw-semibold">{{ $member->name }}  @if ($member->id == Auth::user()->id) (Saya) @endif</a>
+										<a href="javascript:void(0);" class="text-body fw-semibold">{{ $member->name }}</a>
 									</td>
 									<td>{{ $member->email }}</td>
                                     <td>{{ $member->phone }}</td>
@@ -53,9 +53,7 @@ Data Member
 											<div class="dropdown-menu">
 												<a class="dropdown-item" href="{{ route('admin.members.edit', $member->id) }}">Edit</a>
 												<a class="dropdown-item" href="{{ route('admin.members.edit-password', $member->id) }}">Ganti Password</a>
-                                                @if ($member->id != Auth::user()->id)
                                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDelete('{{ route('admin.members.destroy', $member->id) }}');">Hapus</a>
-                                                @endif
 											</div>
 										</div>
 									</td>

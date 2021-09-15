@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\Province;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -31,7 +32,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.members.create');
+        $provinces = Province::all();
+        return view('admin.pages.members.create', compact('provinces'));
     }
 
     /**
@@ -56,6 +58,7 @@ class MemberController extends Controller
         ]);
 
         Member::create([
+            'province_id' => $request->province_id,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -92,7 +95,8 @@ class MemberController extends Controller
     public function edit($id)
     {
         $member = Member::findOrFail($id);
-        return view('admin.pages.members.edit', compact('member'));
+        $provinces = Province::all();
+        return view('admin.pages.members.edit', compact('member', 'provinces'));
     }
 
     /**
@@ -107,6 +111,7 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
 
         $request->validate([
+            'province_id' => 'required|numeric',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:members,email,' . $member->id . ',id',
             'image' => 'nullable|image|mimes:jpg,png,jpeg|max:3000',
@@ -150,6 +155,7 @@ class MemberController extends Controller
         }
 
         Member::where('id', $member->id)->update([
+            'province_id' => $request->province_id,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
