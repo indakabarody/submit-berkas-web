@@ -9,6 +9,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		{{-- App favicon --}}
 		<link rel="shortcut icon" href="{{asset('themes/user/images/favicon.ico')}}">
+        {{-- third party css --}}
+        @yield('page_styles')
+        {{-- third party css end --}}
 		{{-- App css --}}
 		<link href="{{asset('themes/user/css/config/default/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
 		<link href="{{asset('themes/user/css/config/default/app.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
@@ -38,12 +41,12 @@
 									<h6 class="text-overflow m-0">Selamat Datang !</h6>
 								</div>
 								{{-- item--}}
-								<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<a href="{{ route('admin.admins.edit', Auth::user()->id) }}" class="dropdown-item notify-item">
 								<i class="fe-user"></i>
 								<span>Profil Saya</span>
 								</a>
 								{{-- item--}}
-								<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<a href="{{ route('admin.admins.edit-password', Auth::user()->id) }}" class="dropdown-item notify-item">
 								<i class="fe-settings"></i>
 								<span>Ganti Password</span>
 								</a>
@@ -143,7 +146,7 @@
 								<div class="collapse" id="sidebarUsers">
 									<ul class="nav-second-level">
 										<li>
-											<a href="#">Admin</a>
+											<a href="{{ route('admin.admins.index') }}">Admin</a>
 										</li>
 										<li>
 											<a href="#">Member</a>
@@ -226,6 +229,9 @@
         </form>
 		{{-- Vendor js --}}
 		<script src="{{asset('themes/user/js/vendor.min.js')}}"></script>
+        {{-- third party js --}}
+        @yield('page_scripts')
+        {{-- third party js ends --}}
 		{{-- App js --}}
 		<script src="{{asset('themes/user/js/app.min.js')}}"></script>
 	</body>

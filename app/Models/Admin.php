@@ -20,8 +20,11 @@ class Admin extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'image',
         'email',
+        'email_verified_at',
         'password',
+        'is_activated',
     ];
 
     /**

@@ -19,9 +19,21 @@ class Member extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'province_id',
+        'google_id',
+        'facebook_id',
         'name',
+        'image',
         'email',
+        'email_verified_at',
         'password',
+        'phone',
+        'institution',
+        'address',
+        'is_book_publisher',
+        'is_training_organizer',
+        'is_active_participant',
+        'is_activated',
     ];
 
     /**
