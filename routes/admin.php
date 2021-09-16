@@ -12,10 +12,8 @@ Route::middleware(['auth:admin', 'active', 'image-sanitize'])->prefix('admin')->
     Route::get('/', [AdminHomeController::class, 'index'])->name('dashboard');
 
     Route::resource('scripts', AdminScriptController::class);
-    Route::prefix('scripts')->name('scripts.')->group(function () {
-        Route::get('processed', [AdminScriptController::class, 'showProcessedScripts'])->name('processed');
-        Route::get('done', [AdminScriptController::class, 'showDoneProcessedScripts'])->name('done');
-    });
+    Route::get('processed-scripts', [AdminScriptController::class, 'showProcessedScripts'])->name('processed-scripts');
+    Route::get('done-scripts', [AdminScriptController::class, 'showDoneProcessedScripts'])->name('done-scripts');
 
     Route::resource('admins', AdminAdminController::class);
     Route::prefix('admins')->name('admins.')->group(function () {

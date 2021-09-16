@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Script;
 use Illuminate\Http\Request;
 
 class ScriptController extends Controller
@@ -14,7 +15,8 @@ class ScriptController extends Controller
      */
     public function index()
     {
-        //
+        $scripts = Script::orderBy('created_at', 'DESC')->get();
+        return view('admin.pages.scripts.index', compact('scripts'));
     }
 
     /**
@@ -24,7 +26,12 @@ class ScriptController extends Controller
      */
     public function showProcessedScripts()
     {
-        //
+        $scripts = Script::whereNotNull('reviewed_at')
+                    ->whereNull('done_reviewed_at')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+
+        return view('admin.pages.scripts.index-processed', compact('scripts'));
     }
 
     /**
@@ -34,7 +41,12 @@ class ScriptController extends Controller
      */
     public function showDoneProcessedScripts()
     {
-        //
+        $scripts = Script::whereNotNull('reviewed_at')
+                    ->whereNotNull('done_reviewed_at')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+
+        return view('admin.pages.scripts.index-done', compact('scripts'));
     }
 
     /**
