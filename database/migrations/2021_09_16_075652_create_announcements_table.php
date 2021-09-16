@@ -18,6 +18,7 @@ class CreateAnnouncementsTable extends Migration
             $table->unsignedBigInteger('member_id')->index('fk_announcements_members1_idx');
             $table->string('title')->nullable();
             $table->text('content')->nullable();
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
