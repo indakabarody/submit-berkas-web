@@ -64,4 +64,9 @@ class Member extends Authenticatable
     {
         return $this->belongsTo(Province::class, 'province_id');
     }
+
+    public function announcement()
+    {
+        return $this->hasMany(Announcement::class, 'member_id');
+    }
 }

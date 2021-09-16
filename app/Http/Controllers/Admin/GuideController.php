@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guide;
 use Illuminate\Http\Request;
 
 class GuideController extends Controller
@@ -14,7 +15,8 @@ class GuideController extends Controller
      */
     public function index()
     {
-        //
+        $guides = Guide::orderBy('created_at', 'DESC')->get();
+        return view('admin.pages.guides.index', compact('guides'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GuideController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.guides.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class GuideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:65535',
+        ]);
+
+        Guide::create([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('admin.guides.index')->with('toast_success', 'Berhasil menambahkan panduan');
     }
 
     /**
@@ -46,7 +58,8 @@ class GuideController extends Controller
      */
     public function show($id)
     {
-        //
+        $guide = Guide::findOrFail($id);
+        return view('admin.pages.guides.show', compact('guide'));
     }
 
     /**
@@ -57,7 +70,8 @@ class GuideController extends Controller
      */
     public function edit($id)
     {
-        //
+        $guide = Guide::findOrFail($id);
+        return view('admin.pages.guides.edit', compact('guide'));
     }
 
     /**
@@ -69,7 +83,17 @@ class GuideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:65535',
+        ]);
+
+        Guide::findOrFail($id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('admin.guides.index')->with('toast_success', 'Berhasil menyimpan panduan');
     }
 
     /**
@@ -80,6 +104,7 @@ class GuideController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Guide::findOrFail($id)->delete();
+        return redirect()->route('admin.guides.index')->with('toast_success', 'Berhasil menghapus panduan');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Announcement;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -14,7 +16,8 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        $announcements = Announcement::orderBy('created_at', 'DESC')->get();
+        return view('admin.pages.announcements.index', compact('announcements'));
     }
 
     /**
@@ -24,7 +27,8 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        //
+        $members = Member::orderBy('name', 'ASC')->get();
+        return view('admin.pages.announcements.create', compact('members'));
     }
 
     /**
@@ -35,7 +39,21 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'member_id' => 'required',
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:65535',
+        ]);
+
+        foreach ($request->member_id as $memberId) {
+            Announcement::create([
+                'member_id' => $memberId,
+                'title' => $request->title,
+                'content' => $request->content,
+            ]);
+        }
+
+        return redirect()->route('admin.announcements.index')->with('toast_success', 'Berhasil menambahkan pengumuman');
     }
 
     /**
@@ -46,7 +64,8 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        //
+        $announcement = Announcement::findOrFail($id);
+        return view('admin.pages.announcements.show', compact('announcement'));
     }
 
     /**
@@ -57,7 +76,9 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $announcement = Announcement::findOrFail($id);
+        $members = Member::orderBy('name', 'ASC')->get();
+        return view('admin.pages.announcements.edit', compact('announcement', 'members'));
     }
 
     /**
@@ -69,7 +90,17 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:65535',
+        ]);
+
+        Announcement::findOrFail($id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('admin.announcements.index')->with('toast_success', 'Berhasil menyimpan pengumuman');
     }
 
     /**
@@ -80,6 +111,7 @@ class AnnouncementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Announcement::findOrFail($id)->delete();
+        return redirect()->route('admin.announcements.index')->with('toast_success', 'Berhasil menghapus pengumuman');
     }
 }
