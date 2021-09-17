@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewScriptNotification extends Notification
+class NewAnnouncementNotification extends Notification
 {
     use Queueable;
 
@@ -16,9 +16,9 @@ class NewScriptNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($memberName)
     {
-        //
+        $this->memberName = $memberName;
     }
 
     /**
@@ -41,11 +41,11 @@ class NewScriptNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Notifikasi Naskah Baru')
-                    ->greeting('Hai, Admin!')
-                    ->line('Anda mendapatkan submisi naskah baru yang harus Anda tindak lanjuti.')
-                    ->action('Lihat', url(route('admin.scripts.index')))
-                    ->line('Terima kasih atas kerjasamanya.');
+                    ->subject('Notifikasi Pengumuman Baru')
+                    ->greeting('Hai, '.$this->memberName)
+                    ->line('Anda mendapatkan pengumuman baru dari Admin.')
+                    ->action('Lihat', url(route('member.announcements.index')))
+                    ->line('Terima kasih telah menggunakan aplikasi kami.');
     }
 
     /**

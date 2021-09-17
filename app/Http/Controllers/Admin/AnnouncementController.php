@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\Member;
+use App\Notifications\NewAnnouncementNotification;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -51,6 +52,12 @@ class AnnouncementController extends Controller
                 'title' => $request->title,
                 'content' => $request->content,
             ]);
+        }
+
+        foreach ($request->member_id as $memberId) {
+            $member = Member::find($memberId);
+
+            $member->notify(new NewAnnouncementNotification($member->name));
         }
 
         return redirect()->route('admin.announcements.index')->with('toast_success', 'Berhasil menambahkan pengumuman');

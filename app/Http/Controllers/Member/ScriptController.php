@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Script;
+use App\Notifications\NewScriptNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Notification;
 
 class ScriptController extends Controller
 {
@@ -59,7 +64,7 @@ class ScriptController extends Controller
      */
     public function create()
     {
-        //
+        return view('member.pages.scripts.create');
     }
 
     /**
@@ -70,7 +75,36 @@ class ScriptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'foreword' => 'required|string|max:65535',
+            'references' => 'required|string|max:65535',
+            'file' => 'required|file|mimes:pdf,zip,doc,docx',
+        ]);
+
+        $path = 'storage/member/scripts/' . Auth::user()->id;
+
+        if (!File::isDirectory($path)) {
+            File::makeDirectory($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+        $file->move($path, $fileName);
+
+        Script::create([
+            'member_id' => Auth::user()->id,
+            'title' => $request->title,
+            'foreword' => $request->foreword,
+            'references' => $request->references,
+            'file' => $fileName,
+        ]);
+
+        $admins = Admin::all();
+        Notification::send($admins, new NewScriptNotification());
+
+        return redirect()->route('member.scripts.index')->with('toast_success', 'Berhasil menambahkan naskah.');
     }
 
     /**
@@ -115,6 +149,13 @@ class ScriptController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $script = Script::where([
+            'id' => $id,
+            'member_id' => Auth::user()->id,
+        ])->firstOrFail();
+
+        $script->delete();
+
+        return back()->with('toast_success', 'Berhasil menghapus naskah.');
     }
 }

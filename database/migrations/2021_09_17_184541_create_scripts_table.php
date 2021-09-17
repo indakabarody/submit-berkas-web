@@ -19,7 +19,7 @@ class CreateScriptsTable extends Migration
             $table->string('title')->nullable();
             $table->text('foreword')->nullable();
             $table->text('references')->nullable();
-            $table->string('file_name')->nullable();
+            $table->string('file')->nullable();
             $table->timestamp('reviewed_at')->nullable();
             $table->timestamp('done_reviewed_at')->nullable();
             $table->timestamps();

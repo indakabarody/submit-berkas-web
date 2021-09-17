@@ -112,6 +112,10 @@ class ScriptController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $script = Script::findOrFail($id);
+
+        $script->delete();
+
+        return back()->with('toast_success', 'Berhasil menghapus naskah.');
     }
 }

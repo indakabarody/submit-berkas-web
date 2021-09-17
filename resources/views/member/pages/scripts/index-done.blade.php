@@ -37,7 +37,7 @@ Data Naskah Selesai
                                             <span class="badge bg-soft-warning text-warning">Pending</span>
                                         @endif
                                     </td>
-                                    <th><a href="{{ asset('storage/member/scripts/'.$script->id.'/'.$script->file_name) }}" target="_blank">Klik untuk melihat</a></th>
+                                    <th><a href="{{ asset('storage/member/scripts/'.$script->member_id.'/'.$script->file) }}" target="_blank">Klik untuk melihat</a></th>
                                     <td>{{ date('d-m-Y', strtotime($script->created_at)) }}</td>
 									<td>
 										<div class="btn-group">

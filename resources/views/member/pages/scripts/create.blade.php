@@ -1,7 +1,7 @@
-@extends('admin.layouts.app')
+@extends('member.layouts.app')
 
 @section('title')
-    Tambah Pengumuman
+    Tambah Naskah
 @endsection
 
 @section('content')
@@ -14,38 +14,45 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form class="form-horizontal" action="{{ route('admin.announcements.store') }}" method="POST">
+                        <form class="form-horizontal" action="{{ route('member.scripts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="inputTitle3" class="col-4 col-xl-3 col-form-label">Judul</label>
+                                <label for="inputTitle3" class="col-4 col-xl-3 col-form-label">Judul *</label>
                                 <div class="col-8 col-xl-9">
                                     <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="inputTitle3"
-                                        placeholder="Masukkan Judul Pengumuman">
+                                        placeholder="Masukkan Judul Naskah">
                                     @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputMember3" class="col-4 col-xl-3 col-form-label">Member Tujuan</label>
-                                <div class="col-8 col-xl-9">
-                                    <select name="member_id[]" class="form-control @error('member_id') is-invalid @enderror select2-multiple" data-toggle="select2" data-width="100%" multiple="multiple" data-placeholder="Pilih Member ...">
-                                        @foreach ($members as $member)
-                                            <option value="{{ $member->id }}">{{ $member->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('member_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputContent3"
-                                    class="col-4 col-xl-3 col-form-label">Isi Pengumuman</label>
+                                <label for="inputforeword3"
+                                    class="col-4 col-xl-3 col-form-label">Kata Pengantar *</label>
                                 <div class="col-8 col-xl-9">
                                     <div id="snow-editor" style="height: 300px;"></div>
-                                    <input type="hidden" name="content" id="content">
-                                    @error('content') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    <input type="hidden" name="foreword" id="foreword">
+                                    @error('foreword') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
+
+                            <div class="row mb-3">
+                                <label for="inputReferences3" class="col-4 col-xl-3 col-form-label">Sumber Referensi (pisahkan dengan koma) *</label>
+                                <div class="col-8 col-xl-9">
+                                    <input name="references" type="text" class="form-control @error('references') is-invalid @enderror" id="inputReferences3"
+                                        placeholder="Masukkan Sumber Referensi">
+                                    @error('references') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputReferences3" class="col-4 col-xl-3 col-form-label">File *</label>
+                                <div class="col-8 col-xl-9">
+                                    <input name="file" type="file" id="example-fileinput" class="form-control @error('file') is-invalid @enderror"></div>
+                                    @error('file') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
                             <div class="justify-content-end row">
                                 <div class="col-8 col-xl-9">
                                     <button type="submit" class="btn btn-info waves-effect waves-light">Simpan</button>
@@ -93,7 +100,7 @@
 <script>
     document.getElementById('snow-editor').addEventListener('keyup', function (event) {
         // alert(event.target.innerHTML);
-        document.getElementById('content').value = event.target.innerHTML;
+        document.getElementById('foreword').value = event.target.innerHTML;
     });
 </script>
 @endsection

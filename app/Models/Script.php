@@ -14,8 +14,13 @@ class Script extends Model
         'title',
         'forewood',
         'references',
-        'file_name',
+        'file',
         'reviewed_at',
         'done_reviewed_at',
     ];
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id');
+    }
 }

@@ -75,4 +75,9 @@ class Member extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Announcement::class, 'member_id');
     }
+
+    public function script()
+    {
+        return $this->hasMany(Script::class, 'member_id');
+    }
 }
