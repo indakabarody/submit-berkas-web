@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Notifications\CustomResetPassword;
+use App\Notifications\CustomVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Member extends Authenticatable
+class Member extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -58,6 +59,11 @@ class Member extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomResetPassword($token, 'member'));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomVerifyEmail('member'));
     }
 
     public function province()

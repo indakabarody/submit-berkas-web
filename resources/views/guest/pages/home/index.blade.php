@@ -61,7 +61,7 @@
                             <a href="#contact" class="nav-link">Contact</a>
                         </li>
                     </ul>
-                    <button class="btn btn-info navbar-btn">Login Member</button>
+                    <a href="{{ route('member.login') }}" class="btn btn-info navbar-btn">Login Member</a>
                 </div>
             </div>
         </nav>

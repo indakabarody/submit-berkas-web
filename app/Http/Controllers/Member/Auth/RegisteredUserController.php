@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\Province;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('member.auth.register');
+        $provinces = Province::all();
+        return view('member.auth.register', compact('provinces'));
     }
 
     /**
@@ -33,18 +35,28 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'province_id' => 'required|numeric',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:members',
             'phone' => 'required|numeric',
-            'institution' => 'required|max:255',
-            'password' => ['required', 'confirmed', Rules\Password::default()],
+            'institution' => 'required|string|max:255',
+            'address' => 'required|string|max:65535',
+            'is_book_publisher' => 'nullable',
+            'is_training_organizer' => 'nullable',
+            'is_active_participant' => 'nullable',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $member = Member::create([
+            'province_id' => $request->province_id,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'institution' => $request->institution,
+            'address' => $request->address,
+            'is_book_publisher' => $request->is_book_publisher ?? 0,
+            'is_training_organizer' => $request->is_training_organizer ?? 0,
+            'is_active_participant' => $request->is_active_participant ?? 0,
             'password' => Hash::make($request->password),
             'is_activated' => 1,
         ]);
