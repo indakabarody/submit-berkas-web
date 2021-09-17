@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnnouncementController extends Controller
 {
@@ -14,7 +16,8 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        $announcements = Announcement::where('member_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+        return view('member.pages.announcements.index', compact('announcements'));
     }
 
     /**
@@ -46,7 +49,15 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        //
+        $announcement = Announcement::findOrFail($id);
+
+        if ($announcement->read_at == NULL) {
+            $announcement->update([
+                'read_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+
+        return view('member.pages.announcements.show', compact('announcement'));
     }
 
     /**

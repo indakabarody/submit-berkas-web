@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guide;
 use Illuminate\Http\Request;
 
 class GuideController extends Controller
@@ -14,7 +15,8 @@ class GuideController extends Controller
      */
     public function index()
     {
-        //
+        $guides = Guide::orderBy('created_at', 'DESC')->get();
+        return view('member.pages.guides.index', compact('guides'));
     }
 
     /**
@@ -46,7 +48,8 @@ class GuideController extends Controller
      */
     public function show($id)
     {
-        //
+        $guide = Guide::findOrFail($id);
+        return view('member.pages.guides.show', compact('guide'));
     }
 
     /**

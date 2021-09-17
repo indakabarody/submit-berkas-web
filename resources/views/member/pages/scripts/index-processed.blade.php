@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('member.layouts.app')
 @section('title')
 Data Naskah Proses Review
 @endsection
@@ -17,7 +17,6 @@ Data Naskah Proses Review
 								<tr>
 									<th>No</th>
 									<th>Naskah</th>
-									<th>Member</th>
                                     <th>Status</th>
                                     <th>File Naskah</th>
 									<th>Dibuat Pada</th>
@@ -29,7 +28,6 @@ Data Naskah Proses Review
 								<tr>
 									<td>{{ $loop->iteration }}</td>
                                     <td>{{ $script->title }}</td>
-									<td>{{ $script->member->name }}</td>
                                     <td>
                                         @if (isset($script->reviewed_at) && isset($script->done_reviewed_at))
                                             <span class="badge bg-soft-success text-success">Selesai</span>

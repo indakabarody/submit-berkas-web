@@ -98,7 +98,7 @@
                                     </div>
                                     <h5 class="mb-4 text-uppercase bg-light p-2"><i class="mdi mdi-information-outline me-1"></i> Info Lainnya</h5>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="email" class="form-label">Daftar Sebagai</label>
                                                 <div class="form-check">

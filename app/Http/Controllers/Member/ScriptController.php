@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\Script;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ScriptController extends Controller
 {
@@ -14,7 +16,40 @@ class ScriptController extends Controller
      */
     public function index()
     {
-        //
+        $scripts = Script::where('member_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+        return view('member.pages.scripts.index', compact('scripts'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showProcessedScripts()
+    {
+        $scripts = Script::where('member_id', Auth::user()->id)
+                    ->whereNotNull('reviewed_at')
+                    ->whereNull('done_reviewed_at')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+
+        return view('member.pages.scripts.index-processed', compact('scripts'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showDoneProcessedScripts()
+    {
+        $scripts = Script::where('member_id', Auth::user()->id)
+                    ->whereNotNull('reviewed_at')
+                    ->whereNotNull('done_reviewed_at')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+
+        return view('member.pages.scripts.index-done', compact('scripts'));
     }
 
     /**

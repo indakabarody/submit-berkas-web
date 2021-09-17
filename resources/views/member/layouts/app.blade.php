@@ -28,6 +28,54 @@
 			<div class="navbar-custom">
 				<div class="container-fluid">
 					<ul class="list-unstyled topnav-menu float-end mb-0">
+                        <li class="dropdown notification-list topbar-dropdown">
+                            @php
+                                $announcements = App\Models\Announcement::where('member_id', Auth::user()->id)
+                                            ->whereNull('read_at')
+                                            ->get();
+                                $totalAnno = count($announcements);
+                            @endphp
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="fe-bell noti-icon"></i>
+                                @if ($totalAnno > 0)
+                                <span class="badge bg-danger rounded-circle noti-icon-badge">{{ $totalAnno }}</span>
+                                @endif
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-lg">
+
+                                {{-- item--}}
+                                <div class="dropdown-item noti-title">
+                                    <h5 class="m-0">
+                                        Pengumuman Baru
+                                    </h5>
+                                </div>
+
+                                <div class="noti-scroll" data-simplebar>
+
+
+                                    @foreach ($announcements as $announcement)
+                                        {{-- item--}}
+                                        <a href="{{ route('member.announcements.show', $announcement->id) }}" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-primary">
+                                                <i class="mdi mdi-comment-account-outline"></i>
+                                            </div>
+                                            <p class="notify-details">{{ $announcement->title }}
+                                                <small class="text-muted">{{ date('d-m-Y H:i:s', strtotime($announcement->created_at)) }}</small>
+                                            </p>
+                                        </a>
+                                    @endforeach
+
+
+                                </div>
+
+                                {{-- All--}}
+                                <a href="{{ route('member.announcements.index') }}" class="dropdown-item text-center text-primary notify-item notify-all">
+                                    Lihat semua
+                                    <i class="fe-arrow-right"></i>
+                                </a>
+
+                            </div>
+                        </li>
 						<li class="dropdown notification-list topbar-dropdown">
 							<a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 							<img src="@isset(Auth::user()->image) {{ asset('storage/member/images/'.Auth::user()->id.'/'.Auth::user()->image) }} @else {{ asset('themes/user/images/users/blank.png') }} @endisset" alt="user-image" class="rounded-circle">
@@ -126,25 +174,28 @@
 								<div class="collapse" id="sidebarScripts">
 									<ul class="nav-second-level">
 										<li>
-											<a href="{{ route('admin.scripts.index') }}">Semua Naskah</a>
+											<a href="{{ route('member.scripts.index') }}">Semua Naskah</a>
 										</li>
 										<li>
-											<a href="{{ route('admin.processed-scripts') }}">Naskah Proses Review</a>
+											<a href="{{ route('member.processed-scripts') }}">Naskah Proses Review</a>
 										</li>
 										<li>
-											<a href="{{ route('admin.done-scripts') }}">Naskah Selesai</a>
+											<a href="{{ route('member.done-scripts') }}">Naskah Selesai</a>
 										</li>
 									</ul>
 								</div>
 							</li>
                             <li>
-								<a href="{{ route('admin.announcements.index') }}">
+								<a href="{{ route('member.announcements.index') }}">
 								<i data-feather="info"></i>
 								<span> Pengumuman </span>
+                                @if ($totalAnno > 0)
+                                <span class="badge bg-success rounded-pill float-end">{{ $totalAnno }}</span>
+                                @endif
 								</a>
 							</li>
                             <li>
-								<a href="{{ route('admin.guides.index') }}">
+								<a href="{{ route('member.guides.index') }}">
 								<i data-feather="align-justify"></i>
 								<span> Panduan </span>
 								</a>
@@ -189,7 +240,7 @@
 		</div>
 		{{-- END wrapper --}}
 
-		<!-- Logout Modal -->
+		{{-- Logout Modal --}}
 		<div class="modal fade" id="logoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">

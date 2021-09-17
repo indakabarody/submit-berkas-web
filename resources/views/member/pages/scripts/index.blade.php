@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('member.layouts.app')
 @section('title')
-Data Semua Naskah
+Semua Naskah Saya
 @endsection
 @section('content')
 <div class="content">
@@ -11,13 +11,15 @@ Data Semua Naskah
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
+                        <a href="{{ route('member.scripts.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
+                            <i class="mdi mdi-plus-circle"></i> Naskah Baru
+                        </a>
                         <div class="mb-4"></div>
 						<table id="basic-datatable" class="table dt-responsive nowrap w-100">
 							<thead>
 								<tr>
 									<th>No</th>
 									<th>Naskah</th>
-									<th>Member</th>
                                     <th>Status</th>
                                     <th>File Naskah</th>
 									<th>Dibuat Pada</th>
@@ -29,7 +31,6 @@ Data Semua Naskah
 								<tr>
 									<td>{{ $loop->iteration }}</td>
                                     <td>{{ $script->title }}</td>
-									<td>{{ $script->member->name }}</td>
                                     <td>
                                         @if (isset($script->reviewed_at) && isset($script->done_reviewed_at))
                                             <span class="badge bg-soft-success text-success">Selesai</span>
@@ -47,8 +48,8 @@ Data Semua Naskah
 											<i class="mdi mdi-dots-horizontal font-18"></i>
 											</button>
 											<div class="dropdown-menu">
-												<a class="dropdown-item" href="{{ route('admin.scripts.edit', $script->id) }}">Edit</a>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDelete('{{ route('admin.scripts.destroy', $script->id) }}');">Hapus</a>
+												<a class="dropdown-item" href="{{ route('member.scripts.edit', $script->id) }}">Edit</a>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDelete('{{ route('member.scripts.destroy', $script->id) }}');">Hapus</a>
 											</div>
 										</div>
 									</td>
