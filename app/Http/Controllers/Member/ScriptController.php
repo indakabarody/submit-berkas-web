@@ -115,7 +115,9 @@ class ScriptController extends Controller
      */
     public function show($id)
     {
-        //
+        $script = Script::findOrFail($id);
+
+        return view('member.pages.scripts.show', compact('script'));
     }
 
     /**
@@ -126,7 +128,9 @@ class ScriptController extends Controller
      */
     public function edit($id)
     {
-        //
+        $script = Script::findOrFail($id);
+
+        return view('member.pages.scripts.edit', compact('script'));
     }
 
     /**
@@ -138,7 +142,41 @@ class ScriptController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'foreword' => 'required|string|max:65535',
+            'references' => 'required|string|max:65535',
+            'file' => 'nullable|file|mimes:pdf,zip,doc,docx',
+        ]);
+
+        if ($request->file != NULL) {
+            $file = $request->file('file');
+            $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = 'storage/member/scripts/' . Auth::user()->id;
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true);
+            }
+
+            $file->move($path, $fileName);
+
+            Script::findOrFail($id)->update([
+                'member_id' => Auth::user()->id,
+                'title' => $request->title,
+                'foreword' => $request->foreword,
+                'references' => $request->references,
+                'file' => $fileName,
+            ]);
+        } else {
+            Script::findOrFail($id)->update([
+                'member_id' => Auth::user()->id,
+                'title' => $request->title,
+                'foreword' => $request->foreword,
+                'references' => $request->references,
+            ]);
+        }
+
+        return redirect()->route('member.scripts.index')->with('toast_success', 'Berhasil menyimpan naskah.');
     }
 
     /**
@@ -153,6 +191,12 @@ class ScriptController extends Controller
             'id' => $id,
             'member_id' => Auth::user()->id,
         ])->firstOrFail();
+
+        $filePath = 'storage/member/scripts/'.$script->member_id.'/'.$script->file;
+
+        if (File::isFile($filePath)) {
+            File::delete($filePath);
+        }
 
         $script->delete();
 

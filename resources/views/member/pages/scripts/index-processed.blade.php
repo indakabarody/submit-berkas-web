@@ -45,8 +45,8 @@ Data Naskah Proses Review
 											<i class="mdi mdi-dots-horizontal font-18"></i>
 											</button>
 											<div class="dropdown-menu">
-												<a class="dropdown-item" href="{{ route('admin.scripts.edit', $script->id) }}">Edit</a>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDelete('{{ route('admin.scripts.destroy', $script->id) }}');">Hapus</a>
+                                                <a class="dropdown-item" href="{{ route('member.scripts.show', $script->id) }}">Lihat Detail</a>
+												<a class="dropdown-item" href="{{ route('member.scripts.edit', $script->id) }}">Edit</a>
 											</div>
 										</div>
 									</td>
@@ -67,40 +67,6 @@ Data Naskah Proses Review
 </div>
 {{-- content --}}
 
-{{--begin::Modal Delete--}}
-<div class="modal fade" tabindex="-1" id="deleteModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form id="deleteForm" method="POST">
-				@csrf
-				@method('DELETE')
-				<div class="modal-header">
-					<h5 class="modal-title">Konfirmasi Hapus Naskah</h5>
-					{{--begin::Close--}}
-					<div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-						<span class="svg-icon svg-icon-2x">
-							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-								<g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)" fill="#000000">
-									<rect fill="#000000" x="0" y="7" width="16" height="2" rx="1"></rect>
-									<rect fill="#000000" opacity="0.5" transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)" x="0" y="7" width="16" height="2" rx="1"></rect>
-								</g>
-							</svg>
-						</span>
-					</div>
-					{{--end::Close--}}
-				</div>
-				<div class="modal-body">
-					<p>Yakin ingin menghapus Naskah?</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-light" data-bs-dismiss="modal">Tidak</button>
-					<button type="submit" class="btn btn-primary">Ya</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-{{--end::Modal Delete--}}
 @endsection
 @section('page_styles')
     <link href="{{asset('themes/user/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" type="text/css" />

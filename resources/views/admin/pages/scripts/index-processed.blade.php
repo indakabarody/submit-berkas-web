@@ -47,6 +47,7 @@ Data Naskah Proses Review
 											<i class="mdi mdi-dots-horizontal font-18"></i>
 											</button>
 											<div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('admin.scripts.show', $script->id) }}">Lihat Detail</a>
 												<a class="dropdown-item" href="{{ route('admin.scripts.edit', $script->id) }}">Edit</a>
                                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDelete('{{ route('admin.scripts.destroy', $script->id) }}');">Hapus</a>
 											</div>

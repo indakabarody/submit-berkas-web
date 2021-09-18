@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Script;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ScriptController extends Controller
 {
@@ -78,7 +79,9 @@ class ScriptController extends Controller
      */
     public function show($id)
     {
-        //
+        $script = Script::findOrFail($id);
+
+        return view('admin.pages.scripts.show', compact('script'));
     }
 
     /**
@@ -89,7 +92,9 @@ class ScriptController extends Controller
      */
     public function edit($id)
     {
-        //
+        $script = Script::findOrFail($id);
+
+        return view('admin.pages.scripts.edit', compact('script'));
     }
 
     /**
@@ -101,7 +106,42 @@ class ScriptController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'foreword' => 'required|string|max:65535',
+            'references' => 'required|string|max:65535',
+            'status' => 'required|string|',
+        ]);
+
+        $script = Script::findOrFail($id);
+
+        if ($request->status == 'Pending') {
+            $script->update([
+                'title' => $request->title,
+                'foreword' => $request->foreword,
+                'references' => $request->references,
+                'reviewed_at' => NULL,
+                'done_reviewed_at' => NULL,
+            ]);
+        } elseif ($request->status == 'Proses') {
+            $script->update([
+                'title' => $request->title,
+                'foreword' => $request->foreword,
+                'references' => $request->references,
+                'reviewed_at' => $script->reviewed_at ?? date('Y-m-d H:i:s'),
+                'done_reviewed_at' => NULL,
+            ]);
+        } elseif ($request->status == 'Selesai') {
+            $script->update([
+                'title' => $request->title,
+                'foreword' => $request->foreword,
+                'references' => $request->references,
+                'reviewed_at' => $script->reviewed_at ?? date('Y-m-d H:i:s'),
+                'done_reviewed_at' => $script->done_reviewed_at ?? date('Y-m-d H:i:s'),
+            ]);
+        }
+
+        return redirect()->route('admin.scripts.index')->with('toast_success', 'Berhasil menyimpan naskah.');
     }
 
     /**
@@ -113,6 +153,12 @@ class ScriptController extends Controller
     public function destroy($id)
     {
         $script = Script::findOrFail($id);
+
+        $filePath = 'storage/member/scripts/'.$script->member_id.'/'.$script->file;
+
+        if (File::isFile($filePath)) {
+            File::delete($filePath);
+        }
 
         $script->delete();
 

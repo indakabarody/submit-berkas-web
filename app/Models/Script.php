@@ -12,7 +12,7 @@ class Script extends Model
     protected $fillable = [
         'member_id',
         'title',
-        'forewood',
+        'foreword',
         'references',
         'file',
         'reviewed_at',
