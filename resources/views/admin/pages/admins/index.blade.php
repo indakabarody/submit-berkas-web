@@ -47,6 +47,7 @@ Data Admin
 											<i class="mdi mdi-dots-horizontal font-18"></i>
 											</button>
 											<div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('admin.admins.show', $admin->id) }}">Lihat Detail</a>
 												<a class="dropdown-item" href="{{ route('admin.admins.edit', $admin->id) }}">Edit</a>
 												<a class="dropdown-item" href="{{ route('admin.admins.edit-password', $admin->id) }}">Ganti Password</a>
                                                 @if ($admin->id != Auth::user()->id)

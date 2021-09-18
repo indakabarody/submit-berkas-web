@@ -83,7 +83,8 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = Member::findOrFail($id);
-        return view('admin.pages.members.show', compact('member'));
+        $provinces = Province::all();
+        return view('admin.pages.members.show', compact('member', 'provinces'));
     }
 
     /**

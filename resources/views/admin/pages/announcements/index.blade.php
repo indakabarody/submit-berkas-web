@@ -38,6 +38,7 @@ Data Pengumuman
 											<i class="mdi mdi-dots-horizontal font-18"></i>
 											</button>
 											<div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('admin.announcements.show', $announcement->id) }}">Lihat Detail</a>
 												<a class="dropdown-item" href="{{ route('admin.announcements.edit', $announcement->id) }}">Edit</a>
                                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDelete('{{ route('admin.announcements.destroy', $announcement->id) }}');">Hapus</a>
 											</div>

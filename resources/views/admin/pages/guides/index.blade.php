@@ -36,6 +36,7 @@ Data Panduan
 											<i class="mdi mdi-dots-horizontal font-18"></i>
 											</button>
 											<div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('admin.guides.show', $guide->id) }}">Lihat Detail</a>
 												<a class="dropdown-item" href="{{ route('admin.guides.edit', $guide->id) }}">Edit</a>
                                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDelete('{{ route('admin.guides.destroy', $guide->id) }}');">Hapus</a>
 											</div>
