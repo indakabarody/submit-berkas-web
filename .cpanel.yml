@@ -4,3 +4,4 @@ deployment:
     - export DEPLOYPATH=/home/thea2985/public_html/submitnaskah
     - /bin/cp -r * $DEPLOYPATH
     - /usr/local/bin/composer update
+    - php artisan storage:link
