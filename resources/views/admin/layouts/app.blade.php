@@ -166,6 +166,12 @@
 								<span> Data Panduan </span>
 								</a>
 							</li>
+                            <li>
+								<a href="{{ route('admin.chats.index') }}">
+								<i data-feather="mail"></i>
+								<span> Hubungi Member </span>
+								</a>
+							</li>
 						</ul>
 					</div>
 					{{-- End Sidebar --}}

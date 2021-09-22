@@ -200,6 +200,12 @@
 								<span> Panduan </span>
 								</a>
 							</li>
+                            <li>
+								<a href="{{ route('member.chats.index') }}">
+								<i data-feather="mail"></i>
+								<span> Hubungi Admin </span>
+								</a>
+							</li>
 						</ul>
 					</div>
 					{{-- End Sidebar --}}

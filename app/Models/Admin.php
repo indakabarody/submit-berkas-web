@@ -50,4 +50,9 @@ class Admin extends Authenticatable
     {
         $this->notify(new CustomResetPassword($token, 'admin'));
     }
+
+    public function chat()
+    {
+        return $this->hasMany(Chat::class, 'admin_id');
+    }
 }

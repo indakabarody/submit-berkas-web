@@ -80,4 +80,9 @@ class Member extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Script::class, 'member_id');
     }
+
+    public function chat()
+    {
+        return $this->hasMany(Chat::class, 'member_id');
+    }
 }

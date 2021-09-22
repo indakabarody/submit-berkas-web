@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController as AdminAdminController;
 use App\Http\Controllers\Admin\AnnouncementController as AdminAnnouncementController;
+use App\Http\Controllers\Admin\ChatController as AdminChatController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\MemberController as AdminMemberController;
@@ -29,4 +30,14 @@ Route::middleware(['auth:admin', 'active', 'image-sanitize'])->prefix('admin')->
 
     Route::resource('announcements', AdminAnnouncementController::class);
     Route::resource('guides', AdminGuideController::class);
+
+    Route::prefix('chats')->name('chats.')->group(function () {
+        Route::get('/', [AdminChatController::class, 'showMembers'])->name('index');
+        Route::get('/{member}', [AdminChatController::class, 'showInboxes'])->name('inbox');
+        Route::get('/{member}/sent-messages', [AdminChatController::class, 'showSentMessages'])->name('sent-messages');
+        Route::get('/{member}/create', [AdminChatController::class, 'create'])->name('create');
+        Route::post('/{member}', [AdminChatController::class, 'store'])->name('store');
+        Route::get('/{member}/{chat}', [AdminChatController::class, 'show'])->name('show');
+        Route::post('/{member}/{chat}/reply', [AdminChatController::class, 'reply'])->name('reply');
+    });
 });
