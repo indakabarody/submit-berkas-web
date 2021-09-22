@@ -51,7 +51,7 @@ class EditProfileController extends Controller
             $img->fit(600);
             $img->save($path . '/' . $fileName);
 
-            Member::where('id', $member->id)->update([
+            $member->update([
                 'image' => $fileName
             ]);
         }
@@ -61,12 +61,18 @@ class EditProfileController extends Controller
                 File::delete('storage/member/images/'.$member->id.'/'.$member->image);
             }
 
-            Member::where('id', $member->id)->update([
+            $member->update([
                 'image' => NULL,
             ]);
         }
 
-        Member::where('id', $member->id)->update([
+        if ($request->email != $member->email) {
+            $member->update([
+                'email_verified_at' => NULL
+            ]);
+        }
+
+        $member->update([
             'province_id' => $request->province_id,
             'name' => $request->name,
             'email' => $request->email,
