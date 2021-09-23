@@ -12,7 +12,7 @@ Detail Pesan
                 <div class="card">
                     <div class="card-body">
 
-                        @include('admin.pages.chats.sidebar')
+                        @include('member.pages.chats.sidebar')
 
                         <div class="inbox-rightbar">
 
@@ -33,7 +33,7 @@ Detail Pesan
                                 {!! $chat->message !!}
 
                                 <div class="mt-5">
-                                    <a href="{{ route('admin.chats.reply', ['chat' => $chat->id, 'member' => $chat->member_id]) }}" class="btn btn-secondary me-2"><i class="mdi mdi-reply me-1"></i> Balas</a>
+                                    <a href="{{ route('member.chats.reply', ['chat' => $chat->id, 'admin' => $chat->admin_id]) }}" class="btn btn-secondary me-2"><i class="mdi mdi-reply me-1"></i> Balas</a>
                                 </div>
 
                             </div>

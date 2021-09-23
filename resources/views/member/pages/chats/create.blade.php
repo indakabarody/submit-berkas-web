@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('member.layouts.app')
 @section('title')
-Balas Pesan ke {{ $member->name }}
+Pesan Baru ke {{ $admin->name }}
 @endsection
 @section('content')
 <div class="content">
@@ -12,16 +12,16 @@ Balas Pesan ke {{ $member->name }}
                 <div class="card">
                     <div class="card-body">
 
-                        @include('admin.pages.chats.sidebar')
+                        @include('member.pages.chats.sidebar')
 
                         <div class="inbox-rightbar">
 
                             <div class="mt-4">
-                                <form action="{{ route('admin.chats.store', $member->id) }}" method="POST">
+                                <form action="{{ route('member.chats.store', $admin->id) }}" method="POST">
                                     @csrf
 
                                     <div class="mb-3">
-                                        <input name="subject" value="Re:{{ $chat->subject }}" type="text" class="form-control @error('subject') is-invalid @enderror" placeholder="Subjek">
+                                        <input name="subject" type="text" class="form-control @error('subject') is-invalid @enderror" placeholder="Subjek">
                                         @error('subject') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                     <div class="mb-3 card border-0">

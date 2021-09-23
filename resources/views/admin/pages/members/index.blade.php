@@ -51,6 +51,7 @@ Data Member
 											<i class="mdi mdi-dots-horizontal font-18"></i>
 											</button>
 											<div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('admin.chats.inbox', $member->id) }}">Hubungi Member</a>
                                                 <a class="dropdown-item" href="{{ route('admin.members.show', $member->id) }}">Lihat Detail</a>
 												<a class="dropdown-item" href="{{ route('admin.members.edit', $member->id) }}">Edit</a>
 												<a class="dropdown-item" href="{{ route('admin.members.edit-password', $member->id) }}">Ganti Password</a>

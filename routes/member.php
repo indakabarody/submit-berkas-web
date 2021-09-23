@@ -33,7 +33,7 @@ Route::middleware(['auth:member', 'active', 'image-sanitize'])->prefix('member')
             Route::get('/{admin}/create', [MemberChatController::class, 'create'])->name('create');
             Route::post('/{admin}', [MemberChatController::class, 'store'])->name('store');
             Route::get('/{admin}/{chat}', [MemberChatController::class, 'show'])->name('show');
-            Route::post('/{admin}/{chat}/reply', [MemberChatController::class, 'reply'])->name('reply');
+            Route::get('/{admin}/{chat}/reply', [MemberChatController::class, 'reply'])->name('reply');
         });
     });
 

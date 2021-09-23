@@ -60,7 +60,7 @@
                                                 <i class="mdi mdi-comment-account-outline"></i>
                                             </div>
                                             <p class="notify-details">{{ $announcement->title }}
-                                                <small class="text-muted">{{ date('d-m-Y H:i:s', strtotime($announcement->created_at)) }}</small>
+                                                <small class="text-muted">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($announcement->created_at))->diffForHumans() }}</small>
                                             </p>
                                         </a>
                                     @endforeach

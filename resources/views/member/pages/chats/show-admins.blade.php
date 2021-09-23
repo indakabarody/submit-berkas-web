@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('member.layouts.app')
 @section('title')
-Pilih Member
+Pilih Admin
 @endsection
 @section('content')
 <div class="content">
@@ -19,27 +19,23 @@ Pilih Member
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Nama Member</th>
+									<th>Nama Admin</th>
 									<th>Email</th>
-                                    <th>No Telp</th>
-                                    <th>Asal Provinsi</th>
 									<th>Status Akun</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($members as $member)
+								@foreach ($admins as $admin)
 								<tr>
 									<td>{{ $loop->iteration }}</td>
 									<td class="table-user">
-										<img src="@isset($member->image) {{ asset('storage/member/images/'.$member->id.'/'.$member->image) }} @else {{ asset('themes/user/images/users/blank.png') }} @endisset" alt="table-user" class="me-2 rounded-circle">
-										<a href="javascript:void(0);" class="text-body fw-semibold">{{ $member->name }}</a>
+										<img src="@isset($admin->image) {{ asset('storage/admin/images/'.$admin->id.'/'.$admin->image) }} @else {{ asset('themes/user/images/users/blank.png') }} @endisset" alt="table-user" class="me-2 rounded-circle">
+										<a href="javascript:void(0);" class="text-body fw-semibold">{{ $admin->name }}</a>
 									</td>
-									<td>{{ $member->email }}</td>
-                                    <td>{{ $member->phone }}</td>
-                                    <td>{{ $member->province->province }}</td>
+									<td>{{ $admin->email }}</td>
 									<td>
-										@if ($member->is_activated == 1)
+										@if ($admin->is_activated == 1)
 										<span class="badge bg-soft-success text-success">Aktif</span>
 										@else
 										<span class="badge bg-soft-danger text-danger">Nonaktif</span>
@@ -47,7 +43,7 @@ Pilih Member
 									</td>
 									<td>
 										<div class="btn-group">
-											<a href="{{ route('admin.chats.inbox', $member->id) }}" class="btn btn-sm btn-light">
+											<a href="{{ route('member.chats.inbox', $admin->id) }}" class="btn btn-sm btn-light">
 											<i class="mdi mdi-email font-18"></i>
                                             </a>
 										</div>

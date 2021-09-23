@@ -16,7 +16,7 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showMembers()
+    public function showAdmins()
     {
         $admins = Admin::all();
         return view('member.pages.chats.show-admins', compact('admins'));
@@ -37,7 +37,7 @@ class ChatController extends Controller
             'is_from_member' => 0,
         ])->orderBy('created_at', 'DESC')->get();
 
-        return view('member.pages.chats.inbox', compact('chats'));
+        return view('member.pages.chats.inbox', compact('admin', 'chats'));
     }
 
     /**
@@ -45,9 +45,9 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showSentMessages($memberId)
+    public function showSentMessages($adminId)
     {
-        $admin = Admin::findOrFail($memberId);
+        $admin = Admin::findOrFail($adminId);
         $chats = Chat::where([
             'admin_id' => $admin->id,
             'member_id' => Auth::user()->id,
@@ -55,7 +55,7 @@ class ChatController extends Controller
             'is_from_member' => 1,
         ])->orderBy('created_at', 'DESC')->get();
 
-        return view('member.pages.chats.sent-messages', compact('chats'));
+        return view('member.pages.chats.sent-messages', compact('admin', 'chats'));
     }
 
     /**
@@ -95,7 +95,7 @@ class ChatController extends Controller
 
         $admin->notify(new NewChatNotification('admin'));
 
-        return redirect()->route('member.chats.index')->with('toast_success', 'Berhasil mengirim pesan');
+        return redirect()->route('member.chats.inbox', $admin->id)->with('toast_success', 'Berhasil mengirim pesan');
     }
 
     /**
@@ -106,19 +106,21 @@ class ChatController extends Controller
      */
     public function show($adminId, $id)
     {
+        $admin = Admin::findOrFail($adminId);
+
         $chat = Chat::where([
             'id' => $id,
             'admin_id' => $adminId,
             'member_id' => Auth::user()->id,
         ])->firstOrFail();
 
-        if ($chat->read_at == NULL) {
+        if ($chat->read_at == NULL && $chat->is_from_admin == 1) {
             $chat->update([
                 'read_at' => date('Y-m-d H:i:s')
             ]);
         }
 
-        return view('member.pages.chats.show', compact('chat'));
+        return view('member.pages.chats.show', compact('admin', 'chat'));
     }
 
     /**
@@ -128,15 +130,13 @@ class ChatController extends Controller
      */
     public function reply($adminId, $chatId)
     {
-        $admin = Admin::firstOrFail($adminId);
+        $admin = Admin::findOrFail($adminId);
 
         $chat = Chat::where([
             'id' => $chatId,
             'admin_id' => $admin->id,
-            'is_from_member' => 0,
-            'is_from_admin' => 1,
         ])->firstOrFail();
 
-        return view('member.pages.chats.reply', compact('chat'));
+        return view('member.pages.chats.reply', compact('admin', 'chat'));
     }
 }

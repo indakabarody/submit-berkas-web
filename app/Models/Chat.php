@@ -26,6 +26,6 @@ class Chat extends Model
 
     public function member()
     {
-        return $this->hasMany(Member::class, 'member_id');
+        return $this->belongsTo(Member::class, 'member_id');
     }
 }

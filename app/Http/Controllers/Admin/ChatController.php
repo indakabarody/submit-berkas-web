@@ -37,7 +37,7 @@ class ChatController extends Controller
             'is_from_member' => 1,
         ])->orderBy('created_at', 'DESC')->get();
 
-        return view('admin.pages.chats.inbox', compact('chats'));
+        return view('admin.pages.chats.inbox', compact('member', 'chats'));
     }
 
     /**
@@ -55,7 +55,7 @@ class ChatController extends Controller
             'is_from_member' => 0,
         ])->orderBy('created_at', 'DESC')->get();
 
-        return view('admin.pages.chats.sent-messages', compact('chats'));
+        return view('admin.pages.chats.sent-messages', compact('member', 'chats'));
     }
 
     /**
@@ -95,7 +95,7 @@ class ChatController extends Controller
 
         $member->notify(new NewChatNotification('member'));
 
-        return redirect()->route('admin.chats.index')->with('toast_success', 'Berhasil mengirim pesan');
+        return redirect()->route('admin.chats.inbox', $member->id)->with('toast_success', 'Berhasil mengirim pesan');
     }
 
     /**
@@ -106,19 +106,21 @@ class ChatController extends Controller
      */
     public function show($memberId, $id)
     {
+        $member = Member::findOrFail($memberId);
+
         $chat = Chat::where([
             'id' => $id,
             'admin_id' => Auth::user()->id,
-            'member_id' => $memberId,
+            'member_id' => $member->id,
         ])->firstOrFail();
 
-        if ($chat->read_at == NULL) {
+        if ($chat->read_at == NULL && $chat->is_from_member == 1) {
             $chat->update([
                 'read_at' => date('Y-m-d H:i:s')
             ]);
         }
 
-        return view('admin.pages.chats.show', compact('chat'));
+        return view('admin.pages.chats.show', compact('member', 'chat'));
     }
 
     /**
@@ -128,15 +130,13 @@ class ChatController extends Controller
      */
     public function reply($memberId, $chatId)
     {
-        $member = Member::firstOrFail($memberId);
+        $member = Member::findOrFail($memberId);
 
         $chat = Chat::where([
             'id' => $chatId,
             'member_id' => $member->id,
-            'is_from_member' => 1,
-            'is_from_admin' => 0,
         ])->firstOrFail();
 
-        return view('admin.pages.chats.reply', compact('chat'));
+        return view('admin.pages.chats.reply', compact('member', 'chat'));
     }
 }

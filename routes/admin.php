@@ -38,6 +38,6 @@ Route::middleware(['auth:admin', 'active', 'image-sanitize'])->prefix('admin')->
         Route::get('/{member}/create', [AdminChatController::class, 'create'])->name('create');
         Route::post('/{member}', [AdminChatController::class, 'store'])->name('store');
         Route::get('/{member}/{chat}', [AdminChatController::class, 'show'])->name('show');
-        Route::post('/{member}/{chat}/reply', [AdminChatController::class, 'reply'])->name('reply');
+        Route::get('/{member}/{chat}/reply', [AdminChatController::class, 'reply'])->name('reply');
     });
 });

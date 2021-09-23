@@ -20,7 +20,7 @@ Data Pengumuman
                                     </div>
                                     <div class="col-mail col-mail-2">
                                         <a href="{{ route('member.announcements.show', $announcement->id) }}" class="subject">{!! Str::limit($announcement->content, '50', '...') !!}</a>
-                                        <div class="date">{{ date('d/m/Y', strtotime($announcement->created_at)) }}</div>
+                                        <div class="date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($announcement->created_at))->diffForHumans() }}</div>
                                     </div>
                                 </li>
                                 @endforeach

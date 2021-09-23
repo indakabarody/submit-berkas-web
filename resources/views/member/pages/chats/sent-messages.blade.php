@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('member.layouts.app')
 @section('title')
-Pesan Terkirim ke {{ $member->name }}
+Pesan Terkirim ke {{ $admin->name }}
 @endsection
 @section('content')
 <div class="content">
@@ -12,7 +12,7 @@ Pesan Terkirim ke {{ $member->name }}
                 <div class="card">
                     <div class="card-body">
 
-                        @include('admin.pages.chats.sidebar')
+                        @include('member.pages.chats.sidebar')
 
                         <div class="inbox-rightbar">
 
@@ -23,10 +23,10 @@ Pesan Terkirim ke {{ $member->name }}
                                         <li>
                                             <div class="col-mail col-mail-1">
                                                 <span class="star-toggle far fa-star text-warning"></span>
-                                                <a href="{{ route('admin.chats.show', ['member' => $member->id, 'chat' => $chat->id]) }}" class="title">{{ $chat->member->name }}</a>
+                                                <a href="{{ route('member.chats.show', ['admin' => $admin->id, 'chat' => $chat->id]) }}" class="title">{{ $chat->admin->name }}</a>
                                             </div>
                                             <div class="col-mail col-mail-2">
-                                                <a href="{{ route('admin.chats.show', ['member' => $member->id, 'chat' => $chat->id]) }}" class="subject">{{ $chat->subject }}</span>
+                                                <a href="{{ route('member.chats.show', ['admin' => $admin->id, 'chat' => $chat->id]) }}" class="subject">{{ $chat->subject }}</span>
                                                 </a>
                                                 <div class="date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($chat->created_at))->diffForHumans() }}</div>
                                             </div>
