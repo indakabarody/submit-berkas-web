@@ -21,7 +21,7 @@
 		<link href="{{asset('themes/user/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 	</head>
 	{{-- body start --}}
-	<body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": false}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+	<body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": false}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": true}'>
 		{{-- Begin page --}}
 		<div id="wrapper">
 			{{-- Topbar Start --}}
@@ -63,25 +63,25 @@
 					<div class="logo-box">
 						<a href="{{ route('admin.dashboard') }}" class="logo logo-dark text-center">
 						<span class="logo-sm">
-						{{-- <img src="{{asset('themes/user/images/logo-sm.png')}}" alt="" height="22"> --}}
-						<span class="logo-lg-text-light">Submit Naskah</span>
+						<img src="{{asset('logos/logo-sm.png')}}" alt="" height="22">
+						{{-- <span class="logo-lg-text-light">Submit Naskah</span> --}}
 						</span>
 						<span class="logo-lg">
-						{{-- <img src="{{asset('themes/user/images/logo-dark.png')}}" alt="" height="20"> --}}
-						<span class="logo-lg-text-light">SN</span>
+						<img src="{{asset('logos/logo-dark.png')}}" alt="" height="50">
+						{{-- <span class="logo-lg-text-light">SN</span> --}}
 						</span>
 						</a>
 						<a href="{{ route('admin.dashboard') }}" class="logo logo-light text-center">
 						<span class="logo-sm">
-						{{-- <img src="{{asset('themes/user/images/logo-sm.png')}}" alt="" height="22"> --}}
-						<span class="logo-lg-text-light">SN</span>
+						<img src="{{asset('logos/logo-sm.png')}}" alt="" height="22">
+						{{-- <span class="logo-lg-text-light">SN</span> --}}
 						</span>
 						<span class="logo-lg">
-						{{-- <img src="{{asset('themes/user/images/logo-light.png')}}" alt="" height="20"> --}}
-						<span class="logo-lg-text-light">Submit Naskah</span>
+						<img src="{{asset('themes/user/images/logo-light.png')}}" alt="" height="20">
+						{{-- <span class="logo-lg-text-light">Submit Naskah</span> --}}
 						</span>
 						</a>
-					</div>
+                    </div>
 					<ul class="list-unstyled topnav-menu topnav-menu-left m-0">
 						<li>
 							<button class="button-menu-mobile waves-effect waves-light">

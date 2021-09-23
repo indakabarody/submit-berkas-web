@@ -10,6 +10,13 @@
     <div class="card-body p-4">
 
         <div class="text-center w-75 m-auto">
+            <div class="auth-logo">
+                <a href="{{ route('home') }}" class="logo logo-dark text-center">
+                    <span class="logo-lg">
+                        <img src="{{ asset('logos/logo-dark.png') }}" alt="" height="45">
+                    </span>
+                </a>
+            </div>
             <p class="text-muted mb-4 mt-3">Reset Password Anda.</p>
         </div>
 

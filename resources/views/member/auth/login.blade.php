@@ -3,6 +3,16 @@
 Login Member
 @endsection
 @section('content')
+<!-- Logo -->
+<div class="auth-brand text-center text-lg-start">
+    <div class="auth-logo">
+        <a href="{{ route('home') }}" class="logo logo-dark text-center">
+            <span class="logo-lg">
+                <img src="{{ asset('logos/logo-dark.png') }}" alt="" height="22">
+            </span>
+        </a>
+    </div>
+</div>
 {{-- title--}}
 <h4 class="mt-0">@yield('title')</h4>
 <p class="text-muted mb-4">Masukkan email dan password Anda untuk melakukan login.</p>
