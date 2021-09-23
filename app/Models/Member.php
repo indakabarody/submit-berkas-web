@@ -31,9 +31,9 @@ class Member extends Authenticatable implements MustVerifyEmail
         'phone',
         'institution',
         'address',
-        'is_book_publisher',
-        'is_training_organizer',
-        'is_active_participant',
+        'is_writer',
+        'is_training_member',
+        'is_reader',
         'is_activated',
     ];
 

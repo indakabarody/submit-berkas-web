@@ -32,9 +32,9 @@ class EditProfileController extends Controller
             'phone' => 'required|numeric',
             'institution' => 'required|string|max:255',
             'address' => 'required|string|max:65535',
-            'is_book_publisher' => 'nullable',
-            'is_training_organizer' => 'nullable',
-            'is_active_participant' => 'nullable',
+            'is_writer' => 'nullable',
+            'is_training_member' => 'nullable',
+            'is_reader' => 'nullable',
         ]);
 
         if ($request->image != NULL) {
@@ -79,9 +79,9 @@ class EditProfileController extends Controller
             'phone' => $request->phone,
             'institution' => $request->institution,
             'address' => $request->address,
-            'is_book_publisher' => $request->is_book_publisher ?? 0,
-            'is_training_organizer' => $request->is_training_organizer ?? 0,
-            'is_active_participant' => $request->is_active_participant ?? 0,
+            'is_writer' => $request->is_writer ?? 0,
+            'is_training_member' => $request->is_training_member ?? 0,
+            'is_reader' => $request->is_reader ?? 0,
         ]);
 
         return redirect()->back()->with('toast_success', 'Berhasil menyimpan profil');

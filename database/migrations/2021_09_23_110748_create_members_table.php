@@ -27,9 +27,9 @@ class CreateMembersTable extends Migration
             $table->string('phone', 20)->nullable();
             $table->string('institution')->nullable();
             $table->text('address')->nullable();
-            $table->tinyInteger('is_book_publisher')->nullable();
-            $table->tinyInteger('is_training_organizer')->nullable();
-            $table->tinyInteger('is_active_participant')->nullable();
+            $table->tinyInteger('is_writer')->nullable();
+            $table->tinyInteger('is_training_member')->nullable();
+            $table->tinyInteger('is_reader')->nullable();
             $table->tinyInteger('is_activated')->nullable();
             $table->timestamps();
         });

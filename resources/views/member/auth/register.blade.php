@@ -69,16 +69,16 @@ Registrasi Member
     <div class="mb-3">
         <label for="inputPassword5" class="form-label">Daftar Sebagai (Silahkan pilih sesuai kebutuhan)</label>
         <div class="form-check">
-            <input name="is_book_publisher" type="checkbox" class="form-check-input" id="customCheck1" value="1">
-            <label class="form-check-label" for="customCheck1">Penerbitan buku /3 judul (6 Bulan)</label>
+            <input name="is_writer" type="checkbox" class="form-check-input" id="customCheck1" value="1">
+            <label class="form-check-label" for="customCheck1">Penulis</label>
         </div>
         <div class="form-check">
-            <input name="is_training_organizer" type="checkbox" class="form-check-input" id="customCheck2" value="1">
-            <label class="form-check-label" for="customCheck2">Penyelenggara Diklat / 10 kegiatan (1 Tahun)</label>
+            <input name="is_training_member" type="checkbox" class="form-check-input" id="customCheck2" value="1">
+            <label class="form-check-label" for="customCheck2">Member Diklat</label>
         </div>
         <div class="form-check">
-            <input name="is_active_participant" type="checkbox" class="form-check-input" id="customCheck3" value="1">
-            <label class="form-check-label" for="customCheck2">Partisipan aktif/1 tahun</label>
+            <input name="is_reader" type="checkbox" class="form-check-input" id="customCheck3" value="1">
+            <label class="form-check-label" for="customCheck2">Pembaca</label>
         </div>
     </div>
 	<div class="text-center d-grid">
