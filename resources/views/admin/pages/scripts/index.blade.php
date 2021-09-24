@@ -11,6 +11,9 @@ Data Semua Naskah
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
+                        <a href="{{ route('admin.scripts.export-excel') }}" class="btn btn-sm btn-success waves-effect waves-light float-end">
+                            <i class="mdi mdi-file-excel"></i> Ekspor Excel
+                        </a>
                         <div class="mb-4"></div>
 						<table id="basic-datatable" class="table dt-responsive nowrap w-100">
 							<thead>

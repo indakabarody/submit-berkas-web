@@ -13,8 +13,17 @@ Route::middleware(['auth:admin', 'active', 'image-sanitize'])->prefix('admin')->
     Route::get('/', [AdminHomeController::class, 'index'])->name('dashboard');
 
     Route::resource('scripts', AdminScriptController::class);
-    Route::get('processed-scripts', [AdminScriptController::class, 'showProcessedScripts'])->name('processed-scripts');
-    Route::get('done-scripts', [AdminScriptController::class, 'showDoneProcessedScripts'])->name('done-scripts');
+    Route::get('all-scripts/export-excel', [AdminScriptController::class, 'exportExcelAllScripts'])->name('scripts.export-excel');
+
+    Route::prefix('processed-scripts')->name('processed-scripts.')->group(function () {
+        Route::get('/', [AdminScriptController::class, 'showProcessedScripts'])->name('index');
+        Route::get('/export-excel', [AdminScriptController::class, 'exportExcelProcessedScripts'])->name('export-excel');
+    });
+
+    Route::prefix('done-processed-scripts')->name('done-processed-scripts.')->group(function () {
+        Route::get('/', [AdminScriptController::class, 'showDoneProcessedScripts'])->name('index');
+        Route::get('/export-excel', [AdminScriptController::class, 'exportExcelDoneProcessedScripts'])->name('export-excel');
+    });
 
     Route::resource('admins', AdminAdminController::class);
     Route::prefix('admins')->name('admins.')->group(function () {

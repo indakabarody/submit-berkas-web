@@ -129,10 +129,10 @@
 											<a href="{{ route('admin.scripts.index') }}">Semua Naskah</a>
 										</li>
 										<li>
-											<a href="{{ route('admin.processed-scripts') }}">Naskah Proses Review</a>
+											<a href="{{ route('admin.processed-scripts.index') }}">Naskah Proses Review</a>
 										</li>
 										<li>
-											<a href="{{ route('admin.done-scripts') }}">Naskah Selesai</a>
+											<a href="{{ route('admin.done-processed-scripts.index') }}">Naskah Selesai</a>
 										</li>
 									</ul>
 								</div>

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\AllScriptExport;
+use App\Exports\DoneProcessedScriptExport;
+use App\Exports\ProcessedScriptExport;
 use App\Http\Controllers\Controller;
 use App\Models\Script;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ScriptController extends Controller
 {
@@ -48,6 +52,21 @@ class ScriptController extends Controller
                     ->get();
 
         return view('admin.pages.scripts.index-done', compact('scripts'));
+    }
+
+    public function exportExcelAllScripts()
+    {
+        return Excel::download(new AllScriptExport, 'all_scripts_'.date('YmdHis').'.xlsx');
+    }
+
+    public function exportExcelProcessedScripts()
+    {
+        return Excel::download(new ProcessedScriptExport, 'processed_scripts_'.date('YmdHis').'.xlsx');
+    }
+
+    public function exportExcelDoneProcessedScripts()
+    {
+        return Excel::download(new DoneProcessedScriptExport, 'done_processed_scripts_'.date('YmdHis').'.xlsx');
     }
 
     /**
