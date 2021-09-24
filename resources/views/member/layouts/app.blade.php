@@ -177,7 +177,7 @@
 											<a href="{{ route('member.scripts.index') }}">Semua Naskah</a>
 										</li>
 										<li>
-											<a href="{{ route('member.processed-scripts') }}">Naskah Proses Review</a>
+											<a href="{{ route('member.processed-scripts') }}">Naskah Dalam Proses</a>
 										</li>
 										<li>
 											<a href="{{ route('member.done-scripts') }}">Naskah Selesai</a>

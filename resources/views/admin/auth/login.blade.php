@@ -66,6 +66,7 @@
 <div class="row mt-3">
     <div class="col-12 text-center">
         <p> <a href="{{ route('admin.password.request') }}" class="text-white-50 ms-1">Lupa password?</a></p>
+        <p> <a href="{{ route('member.login') }}" class="text-white-50 ms-1">Login Member</a></p>
     </div> {{-- end col --}}
 </div>
 {{-- end row --}}

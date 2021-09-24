@@ -67,6 +67,7 @@ Login Member
 {{-- end form--}}
 {{-- Footer--}}
 <footer class="footer footer-alt">
-	<p class="text-muted">Belum punya akun? <a href="{{ route('member.register') }}" class="text-muted ms-1"><b>Register</b></a></p>
+    <p class="text-muted">Belum punya akun? <a href="{{ route('member.register') }}" class="text-muted ms-1"><b>Register</b></a></p>
+	<p class="text-muted"><a href="{{ route('admin.login') }}" class="text-muted ms-1"><b>Login Admin</b></a></p>
 </footer>
 @endsection

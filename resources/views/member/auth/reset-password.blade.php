@@ -58,5 +58,6 @@ Reset Password Member
 {{-- Footer--}}
 <footer class="footer footer-alt">
 	<p class="text-muted">Kembali ke <a href="{{ route('member.login') }}" class="text-muted ms-1"><b>Login</b></a></p>
+    <p class="text-muted"><a href="{{ route('admin.login') }}" class="text-muted ms-1"><b>Login Admin</b></a></p>
 </footer>
 @endsection

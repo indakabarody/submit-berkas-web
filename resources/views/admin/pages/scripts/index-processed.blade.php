@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('title')
-Data Naskah Proses Review
+Data Naskah Dalam Proses
 @endsection
 @section('content')
 <div class="content">

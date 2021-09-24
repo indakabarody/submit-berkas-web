@@ -129,7 +129,7 @@
 											<a href="{{ route('admin.scripts.index') }}">Semua Naskah</a>
 										</li>
 										<li>
-											<a href="{{ route('admin.processed-scripts.index') }}">Naskah Proses Review</a>
+											<a href="{{ route('admin.processed-scripts.index') }}">Naskah Dalam Proses</a>
 										</li>
 										<li>
 											<a href="{{ route('admin.done-processed-scripts.index') }}">Naskah Selesai</a>
