@@ -11,9 +11,6 @@ Pilih Member
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<a href="{{ route('admin.members.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
-						<i class="mdi mdi-plus-circle"></i> Tambah Member
-						</a>
                         <div class="mb-4"></div>
 						<table id="basic-datatable" class="table dt-responsive nowrap w-100">
 							<thead>
