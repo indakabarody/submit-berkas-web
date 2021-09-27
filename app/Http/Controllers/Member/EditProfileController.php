@@ -33,8 +33,8 @@ class EditProfileController extends Controller
             'institution' => 'required|string|max:255',
             'address' => 'required|string|max:65535',
             'is_writer' => 'nullable',
-            'is_training_member' => 'nullable',
-            'is_reader' => 'nullable',
+            'is_training' => 'nullable',
+            'is_internship' => 'nullable',
         ]);
 
         if ($request->image != NULL) {
@@ -80,8 +80,8 @@ class EditProfileController extends Controller
             'institution' => $request->institution,
             'address' => $request->address,
             'is_writer' => $request->is_writer ?? 0,
-            'is_training_member' => $request->is_training_member ?? 0,
-            'is_reader' => $request->is_reader ?? 0,
+            'is_training' => $request->is_training ?? 0,
+            'is_internship' => $request->is_internship ?? 0,
         ]);
 
         return redirect()->back()->with('toast_success', 'Berhasil menyimpan profil');

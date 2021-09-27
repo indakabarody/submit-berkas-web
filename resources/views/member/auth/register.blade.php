@@ -88,12 +88,12 @@ Registrasi Member
             <label class="form-check-label" for="customCheck1">Penulis</label>
         </div>
         <div class="form-check">
-            <input name="is_training_member" type="checkbox" class="form-check-input" id="customCheck2" value="1">
-            <label class="form-check-label" for="customCheck2">Member Diklat</label>
+            <input name="is_training" type="checkbox" class="form-check-input" id="customCheck2" value="1">
+            <label class="form-check-label" for="customCheck2">Diklat</label>
         </div>
         <div class="form-check">
-            <input name="is_reader" type="checkbox" class="form-check-input" id="customCheck3" value="1">
-            <label class="form-check-label" for="customCheck2">Pembaca</label>
+            <input name="is_internship" type="checkbox" class="form-check-input" id="customCheck3" value="1">
+            <label class="form-check-label" for="customCheck2">Internship</label>
         </div>
     </div>
 	<div class="text-center d-grid">
