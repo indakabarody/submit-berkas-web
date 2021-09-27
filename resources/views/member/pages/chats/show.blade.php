@@ -22,7 +22,20 @@ Detail Pesan
                                 <hr/>
 
                                 <div class="d-flex align-items-start mb-3 mt-1">
-                                    <img class="d-flex me-2 rounded-circle" src="@if ($chat->is_from_admin == 1) {{ asset('storage/admin/images/'.$chat->admin->id.'/'.$chat->admin->image) }} @else {{ asset('storage/member/images/'.$chat->member->id.'/'.$chat->member->image) }} @endif" alt="placeholder image" height="32">
+                                    @if ($chat->is_from_admin == 1)
+                                        @if ($chat->admin->image != NULL)
+                                            <img class="d-flex me-2 rounded-circle" src="{{ asset('storage/admin/images/'.$chat->admin->id.'/'.$chat->admin->image) }}" alt="placeholder image" height="32">
+                                        @else
+                                            <img class="d-flex me-2 rounded-circle" src="{{ asset('themes/user/images/users/blank.png') }}" alt="placeholder image" height="32">
+                                        @endif
+                                    @elseif ($chat->is_from_member == 1)
+                                        @if ($chat->member->image != NULL)
+                                            <img class="d-flex me-2 rounded-circle" src="{{ asset('storage/member/images/'.$chat->member->id.'/'.$chat->member->image) }}" alt="placeholder image" height="32">
+                                        @else
+                                            <img class="d-flex me-2 rounded-circle" src="{{ asset('themes/user/images/users/blank.png') }}" alt="placeholder image" height="32">
+                                        @endif
+
+                                    @endif
                                     <div class="w-100">
                                         <small class="float-end">{{ date('d-m-Y H:i', strtotime($chat->created_at)) }}</small>
                                         <h6 class="m-0 font-14">@if ($chat->is_from_admin == 1) {{ $chat->admin->name }} @else {{ $chat->member->name }} @endif</h6>
