@@ -40,12 +40,11 @@
             {{-- Auth fluid right content --}}
             <div class="auth-fluid-right text-center">
                 <div class="auth-user-testimonial">
-                    <h2 class="mb-3 text-white">Selamat Datang!</h2>
-                    {{-- <p class="lead"><i class="mdi mdi-format-quote-open"></i> I've been using your theme from the previous developer for our web app, once I knew new version is out, I immediately bought with no hesitation. Great themes, good documentation with lots of customization available and sample app that really fit our need. <i class="mdi mdi-format-quote-close"></i>
+                    <img src="{{ asset('logos/logo-big.png') }}" alt="" width="300px">
+                    <h2 class="mb-3 text-white">This is Your Book Era!</h2>
+                    <p class="lead"> Jika punya kumpulan cerita (Novel, Cerpen, Puisi, dan lainnya) untuk dibagikan kepada pembaca, saatnya diterbitkan! Bagi Dosen/Guru materi bahan ajar, Monograf, dan buku referensi dapat diterbitkan juga loh!
+                        Tak perlu ragu untuk mengirimkan naskah Anda ke The Journal Publishing.
                     </p>
-                    <h5 class="text-white">
-                        - Fadlisaad (Ubold Admin User)
-                    </h5> --}}
                 </div> {{-- end auth-user-testimonial--}}
             </div>
             {{-- end Auth fluid right content --}}
