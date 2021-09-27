@@ -46,6 +46,17 @@ Pilih Member
 										<div class="btn-group">
 											<a href="{{ route('admin.chats.inbox', $member->id) }}" class="btn btn-sm btn-light">
 											<i class="mdi mdi-email font-18"></i>
+                                            @php
+                                                $unreadChats = App\Models\Chat::where([
+                                                    'admin_id' => Auth::user()->id,
+                                                    'member_id' => $member->id,
+                                                    'is_from_member' => 1,
+                                                    'read_at' => NULL
+                                                ])->count();
+                                            @endphp
+                                            @if ($unreadChats > 0)
+                                                <span class="badge bg-danger rounded-pill float-end">{{ $unreadChats }}</span>
+                                            @endif
                                             </a>
 										</div>
 									</td>

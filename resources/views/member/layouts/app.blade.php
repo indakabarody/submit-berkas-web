@@ -204,6 +204,16 @@
 								<a href="{{ route('member.chats.index') }}">
 								<i data-feather="mail"></i>
 								<span> Hubungi Admin </span>
+                                @php
+                                    $unreadChats = App\Models\Chat::where([
+                                        'member_id' => Auth::user()->id,
+                                        'is_from_admin' => 1,
+                                        'read_at' => NULL
+                                    ])->count();
+                                @endphp
+                                @if ($unreadChats > 0)
+                                    <span class="badge bg-danger rounded-pill float-end">{{ $unreadChats }}</span>
+                                @endif
 								</a>
 							</li>
 						</ul>
