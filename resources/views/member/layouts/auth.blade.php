@@ -40,7 +40,7 @@
             {{-- Auth fluid right content --}}
             <div class="auth-fluid-right text-center">
                 <div class="auth-user-testimonial">
-                    <img src="{{ asset('logos/logo-big.png') }}" alt="" width="300px">
+                    <img src="{{ asset('logos/logo-white-big.png') }}" alt="" width="300px">
                     <h2 class="mb-3 text-white">This is Your Book Era!</h2>
                     <p class="lead"> Jika punya kumpulan cerita (Novel, Cerpen, Puisi, dan lainnya) untuk dibagikan kepada pembaca, saatnya diterbitkan! Bagi Dosen/Guru materi bahan ajar, Monograf, dan buku referensi dapat diterbitkan juga loh!
                         Tak perlu ragu untuk mengirimkan naskah Anda ke The Journal Publishing.
