@@ -13,6 +13,11 @@ class HomeController extends Controller
     {
         $totalScript = Script::count();
         $totalMember = Member::count();
-        return view('admin.pages.home.index', compact('totalScript', 'totalMember'));
+        $totalMemberWriter = Member::where('is_writer', 1)->count();
+        $totalMemberTraining = Member::where('is_training', 1)->count();
+        $totalMemberInternship = Member::where('is_internship', 1)->count();
+
+        return view('admin.pages.home.index', compact('totalScript', 'totalMember',
+                        'totalMemberWriter', 'totalMemberTraining', 'totalMemberInternship'));
     }
 }
