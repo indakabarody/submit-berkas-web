@@ -111,7 +111,7 @@
                                                 </div>
                                                 <div class="form-check">
                                                     <input name="is_internship" type="checkbox" class="form-check-input" id="customCheck3" value="1" @if (Auth::user()->is_internship == 1) checked @endif>
-                                                    <label class="form-check-label" for="customCheck2">Penulis</label>
+                                                    <label class="form-check-label" for="customCheck2">Internship</label>
                                                 </div>
                                             </div>
                                         </div>
