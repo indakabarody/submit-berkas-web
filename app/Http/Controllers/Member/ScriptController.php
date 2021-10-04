@@ -79,7 +79,7 @@ class ScriptController extends Controller
             'title' => 'required|string|max:255',
             'foreword' => 'required|string|max:65535',
             'references' => 'required|string|max:65535',
-            'file' => 'required|file|mimes:pdf,zip,doc,docx',
+            'file' => 'required|file|mimes:pdf,rar,zip,doc,docx',
         ]);
 
         $path = 'storage/member/scripts/' . Auth::user()->id;

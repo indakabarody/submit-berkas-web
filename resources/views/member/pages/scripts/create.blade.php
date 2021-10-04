@@ -46,9 +46,10 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputReferences3" class="col-4 col-xl-3 col-form-label">File *</label>
+                                <label for="inputFIle" class="col-4 col-xl-3 col-form-label">File *</label>
                                 <div class="col-8 col-xl-9">
                                     <input name="file" type="file" id="example-fileinput" class="form-control @error('file') is-invalid @enderror"></div>
+                                    <span class="help-block"><small>Tips: jika file naskah berjumlah lebih dari satu, silakan kompres file-file tersebut ke dalam format ZIP/RAR.</small></span>
                                     @error('file') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
