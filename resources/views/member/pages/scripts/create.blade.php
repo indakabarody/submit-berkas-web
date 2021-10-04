@@ -50,6 +50,7 @@
                                 <div class="col-8 col-xl-9">
                                     <input name="file" type="file" id="example-fileinput" class="form-control @error('file') is-invalid @enderror"></div>
                                     <span class="help-block"><small>Tips: jika file naskah berjumlah lebih dari satu, silakan kompres file-file tersebut ke dalam format ZIP/RAR.</small></span>
+                                    <span class="help-block"><small>File yang dapat diupload: ZIP, RAR, PDF, DOC, DOCX, dengan ukuran tak terbatas.</small></span>
                                     @error('file') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
