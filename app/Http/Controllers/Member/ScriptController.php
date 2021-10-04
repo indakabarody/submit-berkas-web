@@ -77,7 +77,7 @@ class ScriptController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'foreword' => 'required|string|max:65535',
+            'foreword' => 'required|max:65535',
             'references' => 'required|string|max:65535',
             'file' => 'required|file|mimes:pdf,rar,zip,doc,docx',
         ]);
