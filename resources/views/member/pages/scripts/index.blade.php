@@ -15,7 +15,7 @@ Semua Naskah Saya
                             <i class="mdi mdi-plus-circle"></i> Naskah Baru
                         </a>
                         <div class="mb-4"></div>
-						<table id="scroll-horizontal-datatable" class="table w-100 nowrap">
+						<table id="basic-datatable" class="table w-100 nowrap">
 							<thead>
 								<tr>
 									<th>No</th>
