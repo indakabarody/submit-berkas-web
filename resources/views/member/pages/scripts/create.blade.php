@@ -28,7 +28,7 @@
 
                             <div class="row mb-3">
                                 <label for="inputforeword3"
-                                    class="col-4 col-xl-3 col-form-label">Kata Pengantar *</label>
+                                    class="col-4 col-xl-3 col-form-label">Kata Pengantar</label>
                                 <div class="col-8 col-xl-9">
                                     <div id="snow-editor" style="height: 300px;"></div>
                                     <input type="hidden" name="foreword" id="foreword">
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputReferences3" class="col-4 col-xl-3 col-form-label">Sumber Referensi (pisahkan dengan koma) *</label>
+                                <label for="inputReferences3" class="col-4 col-xl-3 col-form-label">Sumber Referensi *</label>
                                 <div class="col-8 col-xl-9">
                                     <input name="references" type="text" class="form-control @error('references') is-invalid @enderror" id="inputReferences3"
                                         placeholder="Masukkan Sumber Referensi">

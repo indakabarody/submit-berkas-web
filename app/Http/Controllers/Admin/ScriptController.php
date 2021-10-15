@@ -129,7 +129,7 @@ class ScriptController extends Controller
             'title' => 'required|string|max:255',
             'foreword' => 'nullable|string|max:65535',
             'references' => 'required|string|max:65535',
-            'status' => 'required|string|',
+            'status' => 'required|string',
         ]);
 
         $script = Script::findOrFail($id);

@@ -15,7 +15,7 @@ Pilih Admin
 						<i class="mdi mdi-plus-circle"></i> Tambah Member
 						</a>
                         <div class="mb-4"></div>
-						<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+						<table id="scroll-horizontal-datatable" class="table w-100 nowrap">
 							<thead>
 								<tr>
 									<th>No</th>
