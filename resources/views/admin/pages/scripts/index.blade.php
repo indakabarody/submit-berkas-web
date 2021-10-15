@@ -15,7 +15,7 @@ Data Semua Naskah
                             <i class="mdi mdi-file-excel"></i> Ekspor Excel
                         </a>
                         <div class="mb-4"></div>
-						<table id="scroll-horizontal-datatable" class="table w-100 nowrap">
+						<table id="basic-datatable" class="table w-100 nowrap">
 							<thead>
 								<tr>
 									<th>No</th>
