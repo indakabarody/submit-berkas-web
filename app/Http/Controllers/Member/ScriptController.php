@@ -146,7 +146,7 @@ class ScriptController extends Controller
             'title' => 'required|string|max:255',
             'foreword' => 'nullable|string|max:65535',
             'references' => 'required|string|max:65535',
-            'file' => 'nullable|file|mimes:pdf,zip,doc,docx',
+            'file' => 'nullable|file',
         ]);
 
         if ($request->file != NULL) {
